@@ -64,7 +64,7 @@ I navigated to the root directory using `cd /` and listed all files, including h
 
 Here I was going into many, many directories, first using `cd` and `ls -a`, then just using `cat`, and then finding the flag.
 
-
+**pwn.college{IZ0S5gYJXfMROKpjFF_PRAGl6RH.dljM4QDL4kDN0czW}**
 
 # #Challenge 10: making directories
 
