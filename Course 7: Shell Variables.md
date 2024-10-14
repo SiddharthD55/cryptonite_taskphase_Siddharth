@@ -50,7 +50,7 @@ For example, I used `PWN=$(cat /challenge/run)` to capture the contents of the f
 
 I can then use this variable later in my script, making it useful for handling dynamic data.
 
-I can also use backticks for command substitution, like `FLAG=\`cat /flag\`` instead of `FLAG=$(cat /flag)`. However, backticks are an older method and can be cumbersome for nesting commands. In contrast, using `$(...)` is much clearer and easier for me to manage. Overall, I prefer `$(...)` for its readability and flexibility.
+I can also use backticks for command substitution, like ``FLAG=\`cat /flag\`` instead of `FLAG=$(cat /flag)`. However, backticks are an older method and can be cumbersome for nesting commands. In contrast, using `$(...)` is much clearer and easier for me to manage. Overall, I prefer `$(...)` for its readability and flexibility.
 
 **pwn.college{8I5lszLs9BhUmct-8ORnzRyfKam.dVzN0UDLxETO0czW}**
 
