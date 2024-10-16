@@ -43,3 +43,67 @@ For example, `rw-r--r--` allows the owner to read and write, while the group and
 Using the `chmod` command, I can modify permissions; after initially failing with `chmod u+r /flag`, I successfully used `chmod go+rwx /flag`, which grants the group and others read, write, and execute permissions, allowing me to access the file with `cat /flag`.
 
 **pwn.college{cVZhWE7eCGVodAO--9Fl3wfUDVE.dNzNyUDLxETO0czW}**
+
+# #Challenge 5: Executable Files
+
+In this level, we explore execute permissions in Linux.
+
+When trying to run a program like `/challenge/run`, it only executes if you have the appropriate permissions.
+
+Initially, the permissions were set to `-rwxr-xr--`, allowing the owner and group to execute it, but not others.
+
+After attempting to remove permissions with `chmod go-rwx`, I encountered a "permission denied" error. I then restored execute access using `chmod u+x` and `chmod go+x`, changing the permissions to `-r-x--x--x`.
+
+Finally, I successfully executed the program by running `/challenge/run` and retrieved the flag.
+
+**pwn.college{oh3oWf7PYeIaS0dEwWzK5tutOeR.dJTM2QDLxETO0czW}**
+
+# #Challenge 6: Permission Tweaking Practice
+
+During the completion of all 8 rounds of the permission challenges, I started by using `chmod g+w,o+w /challenge/pwn` to add write permissions for the group and others.
+
+Next, I ran `chmod u-r /challenge/pwn` to remove the user’s read permission.
+
+I followed this with `chmod go-w /challenge/pwn` to take away write access from the group and others.
+
+To enable the group to execute, I used `chmod g+wx /challenge/pwn`, and then added write permissions for others with `chmod o+w /challenge/pwn`.
+
+I removed read and write permissions for the user using `chmod u-rw,o-rw /challenge/pwn`, and then adjusted the group permissions with `chmod g-wx /challenge/pwn`.
+
+I also added read and execute permissions for both the user and group using `chmod u+rx,g+rx /challenge/pwn`.
+
+After completing the rounds, I changed the permissions of `/flag`, which initially had `---------` permissions, by running `chmod a+r /flag`.
+
+Finally, I executed `cat /flag` to reveal its contents and retrieve the flag.
+
+**pwn.college{E7K8fsCzGqXiaVSvckWXNUeTNLh.dBTM2QDLxETO0czW}**
+
+# #Challenge 7: Permissions Setting Practice
+
+I learned that I can use `chmod` to both add or remove permissions and overwrite them using `=`.
+
+For example, `u=rw` sets read and write for the user, while `o=x` only allows execution for others.
+
+By chaining commands with commas, like `chmod u=rw,g=r`, I could set different permissions for the user and group at the same time.
+
+I also used `-` to clear permissions completely.
+
+In an 8-round challenge, I adjusted file permissions to meet specific requirements for the user, group, and others.
+
+After completing all rounds, I used `chmod u=r` on the `/flag` file to grant myself read access and successfully read the file.
+
+**pwn.college{0YeLnvQmIdRtEHOkqExMIXft9fx.dNTM5QDLxETO0czW}**
+
+# #Challenge 8: The SUID Bit
+
+Non-root users often need elevated access for certain system tasks, but admins can't always provide passwords for actions restricted to root or sudoers.
+
+The "Set User ID" (SUID) permission bit allows users to execute a program as the owner of that program's file, enabling tools like `su` and `sudo`.
+
+For example, the command `chmod u+s /challenge/getroot` sets the SUID bit, allowing the program to run as root.
+
+However, caution is essential, as granting SUID to an executable owned by root can pose security risks.
+
+In this challenge, successfully setting the SUID bit with `/challenge/getroot` provides access to the flag.
+
+**pwn.college{IeRtxQ7Kip1Rse7GzrrWQx_Cv_y.dNTM2QDLxETO0czW}**
